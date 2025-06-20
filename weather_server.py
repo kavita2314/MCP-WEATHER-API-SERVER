@@ -26,7 +26,7 @@ from weather.weather_utils import get_weather
 
 weather_bp = Blueprint('weather', __name__)
 
-API_KEY = "47dba9f1bd58f3030bb9b263382ff763" 
+API_KEY = "YOUR API KEY" 
  # Replace with your real key
 
 @weather_bp.route('/')
