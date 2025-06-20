@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🌍 Weather Checker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #8ec5fc, #e0c3fc);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #222;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    input {
+      padding: 10px;
+      width: 250px;
+      font-size: 1rem;
+      margin-top: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌤️ MCP Global Weather</h1>
+  <p>Enter any city name (e.g., <b>Delhi</b>, <b> Mumbai)</b>, <b>Haldwani</b>)</p>
+
+  <input type="text" id="cityInput" placeholder="Enter city name...">
+  <br>
+  <button onclick="getTemperature()">Get Temperature</button>
+
+  <p id="result"></p>
+
+  <footer>Made with ❤️ using Flask + OpenWeatherMap API</footer>
+
+  <script>
+    async function getTemperature() {
+      const city = document.getElementById('cityInput').value.trim();
+      if (!city) {
+        document.getElementById('result').innerText = "⚠️ Please enter a city name.";
+        return;
+      }
+
+      const res = await fetch(`/temperature?city=${encodeURIComponent(city)}`);
+      const data = await res.json();
+
+      if (data.error) {
+        document.getElementById('result').innerText = `❌ ${data.error}`;
+      } else {
+        document.getElementById('result').innerText = `🌡️ Temperature in ${data.city} is ${data.temperature_celsius}°C`;
+      }
+    }
+  </script>
+
+</body>
+</html>
