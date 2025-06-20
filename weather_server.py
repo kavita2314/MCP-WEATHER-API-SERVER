@@ -3,7 +3,7 @@
 
 #weather_bp = Blueprint('weather', __name__)
 
-#API_KEY = "47dba9f1bd58f3030bb9b263382ff763"  # Replace with your actual API key
+#API_KEY = "YOUR API"  # Replace with your actual API key
 #CITY = "Haldwani,IN"
 
 # ✅ Serve frontend page
